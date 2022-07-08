@@ -8,17 +8,7 @@ function App() {
   return (
     <div>
       <div className="wrapper">
-        <GameSelect image={waldo0} />
-        <GameSelect image={waldo1} />
-        <GameSelect image={waldo2} />
-        <GameSelect image={waldo0} />
-        <GameSelect image={waldo1} />
-        <GameSelect image={waldo0} />
-        <GameSelect image={waldo1} />
-        <GameSelect image={waldo2} />
-        <GameSelect image={waldo0} />
-        <GameSelect image={waldo1} />
-        <GameSelect image={waldo0} />
+        <GameSelect image={waldo0} link="something" />
         <GameSelect image={waldo1} />
         <GameSelect image={waldo2} />
         <GameSelect image={waldo0} />
