@@ -1,18 +1,36 @@
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { useEffect, useState } from 'react';
 import './App.css';
 import GameSelect from './components/GameSelect';
-import waldo0 from './images/wheresWaldo0.jpg';
-import waldo1 from './images/wheresWaldo1.jpg';
-import waldo2 from './images/wheresWaldo2.jpg';
+import { storage } from './firebase.config';
 
 function App() {
+  const [imageList, setImageList] = useState([]);
+  const imagesRef = ref(storage, '/');
+
+  useEffect(() => {
+    setImageList([]);
+    listAll(imagesRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageList((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
   return (
     <div>
       <div className="wrapper">
-        <GameSelect image={waldo0} link="something" />
-        <GameSelect image={waldo1} />
-        <GameSelect image={waldo2} />
-        <GameSelect image={waldo0} />
-        <GameSelect image={waldo1} />
+        {imageList.map((url) => {
+          return (
+            <GameSelect
+              key={url.slice(71, 83)}
+              image={url}
+              link={url.slice(71, 83)}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -1,0 +1,97 @@
+.gameWrap {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  font-family: 'IBM Plex Mono', monospace;
+  color: wheat;
+}
+
+.container {
+  display: inline-block;
+  overflow: hidden; /* clip the excess when child gets bigger than parent */
+  width: 80vw;
+  height: 80vh;
+}
+
+.containerFail {
+  background-color: red;
+}
+
+.containerPass {
+  background-color: greenyellow;
+}
+.gameImage {
+  width: inherit;
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes flashRedText {
+  from {
+    color: red;
+  }
+  to {
+    color: wheat;
+  }
+}
+@keyframes flashGreenText {
+  from {
+    color: greenyellow;
+  }
+  to {
+    color: wheat;
+  }
+}
+
+.flash {
+  animation: flash 2s;
+}
+
+.textFail {
+  animation: flashRedText 2s;
+}
+
+.textPass {
+  animation: flashGreenText 2s;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+h1 {
+  font-weight: 400;
+  height: 0;
+}
+
+.startScreen {
+  background-color: rgb(88 84 78 / 35%);
+  border-radius: 20px;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+.startScreen > button {
+  background-color: rgb(0 0 0 / 50%);
+  color: wheat;
+  border: none;
+  padding: 16px 32px;
+  font-size: 32px;
+  border-radius: 4px;
+}
+.startScreen > button:hover {
+  background-color: rgb(0 0 0 / 70%);
+}
+
+.startScreen > button:active {
+  background-color: rgb(0 0 0 / 30%);
+}
