@@ -63,25 +63,51 @@ export default function Game() {
   );
 
   function flashRed() {
-    document.querySelector('.container').classList.add('containerFail');
-    document.querySelector('.gameImage').classList.add('flash');
-    document.querySelector('h1').classList.add('textFail');
-    setTimeout(() => {
-      document.querySelector('.container').classList.remove('containerFail');
-      document.querySelector('.gameImage').classList.remove('flash');
-      document.querySelector('h1').classList.remove('textFail');
-    }, 2000);
+    const container = document.querySelector('.container');
+    const gameImage = document.querySelector('.gameImage');
+    const timer = document.querySelector('h1');
+
+    //
+    container.classList.remove('containerPass');
+    timer.classList.remove('textPass');
+    container.classList.add('containerFail');
+    gameImage.classList.add('flash');
+    timer.classList.add('textFail');
+    if (container.classList.contains('containerFail')) {
+      //
+      gameImage.style.animation = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      gameImage.offsetHeight;
+      gameImage.style.animation = '';
+
+      //
+      timer.style.animation = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      timer.offsetHeight;
+      timer.style.animation = '';
+    }
   }
 
   function flashGreen() {
-    document.querySelector('.container').classList.add('containerPass');
-    document.querySelector('.gameImage').classList.add('flash');
-    document.querySelector('h1').classList.add('textPass');
-    setTimeout(() => {
-      document.querySelector('.container').classList.remove('containerPass');
-      document.querySelector('.gameImage').classList.remove('flash');
-      document.querySelector('h1').classList.remove('textPass');
-    }, 2000);
+    const container = document.querySelector('.container');
+    const gameImage = document.querySelector('.gameImage');
+    const timer = document.querySelector('h1');
+
+    container.classList.remove('containerFail');
+    timer.classList.remove('textFail');
+    container.classList.add('containerPass');
+    gameImage.classList.add('flash');
+    timer.classList.add('textPass');
+    if (container.classList.contains('containerPass')) {
+      gameImage.style.animation = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      gameImage.offsetHeight;
+      gameImage.style.animation = '';
+      timer.style.animation = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      timer.offsetHeight;
+      timer.style.animation = '';
+    }
   }
 
   return (
@@ -96,6 +122,7 @@ export default function Game() {
           <img
             className="gameImage"
             onClick={flashRed}
+            onContextMenu={flashGreen}
             src={image}
             alt="find waldo"
           />
