@@ -27,8 +27,7 @@ export default function Game() {
   }, []);
 
   function getCoordinates(event) {
-    console.log(event.pageX, event.pageY);
-    console.log(event);
+    return [event.nativeEvent.offsetX, event.nativeEvent.offsetY];
   }
 
   function getTime(time) {
@@ -90,6 +89,39 @@ export default function Game() {
     }
   }
 
+  function userClicked(event) {
+    const coordinates = getCoordinates(event);
+
+    // Control
+    const baseHeight = 864;
+    const baseWidth = 1536;
+    // Should be pulled from firebase
+    const x = 168;
+    const y = 782;
+    //
+
+    // User Input
+    const userHeight = event.target.height;
+    const userWidth = event.target.width;
+    const selectedCoordX = (baseHeight / userHeight) * coordinates[0];
+    const selectedCoordY = (baseWidth / userWidth) * coordinates[1];
+    //
+
+    const tolerance = 24;
+
+    if (
+      selectedCoordX > x - tolerance &&
+      selectedCoordX < x + tolerance &&
+      selectedCoordY > y - tolerance &&
+      selectedCoordY < y + tolerance
+    ) {
+      flash('Pass');
+      endTimer();
+    } else {
+      flash('Fail');
+    }
+  }
+
   return (
     <div className="gameWrap">
       <h1>
@@ -101,10 +133,7 @@ export default function Game() {
         ) : (
           <img
             className="gameImage"
-            onClick={(event) => {
-              flash('Fail');
-              getCoordinates(event);
-            }}
+            onClick={userClicked}
             onContextMenu={() => flash('Pass')}
             src={image}
             alt="find waldo"
@@ -114,10 +143,3 @@ export default function Game() {
     </div>
   );
 }
-
-// wheresWaldo0:
-// Waldo X: Y:
-// wheresWaldo1:
-// Waldo X: Y:
-// wheresWaldo2:
-// Waldo X: Y:

@@ -13,8 +13,8 @@
 .container {
   display: inline-block;
   overflow: hidden; /* clip the excess when child gets bigger than parent */
-  width: 80vw;
-  height: calc(80vw * 0.5625);
+  width: 1536px;
+  height: 864px;
 }
 
 .containerFail {
