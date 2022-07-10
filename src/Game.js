@@ -28,6 +28,7 @@ export default function Game() {
 
   function getCoordinates(event) {
     console.log(event.pageX, event.pageY);
+    console.log(event);
   }
 
   function getTime(time) {
@@ -100,7 +101,10 @@ export default function Game() {
         ) : (
           <img
             className="gameImage"
-            onClick={() => flash('Fail')}
+            onClick={(event) => {
+              flash('Fail');
+              getCoordinates(event);
+            }}
             onContextMenu={() => flash('Pass')}
             src={image}
             alt="find waldo"
