@@ -62,43 +62,22 @@ export default function Game() {
     </div>
   );
 
-  function flashRed() {
+  function flash(condition) {
     const container = document.querySelector('.container');
     const gameImage = document.querySelector('.gameImage');
     const timer = document.querySelector('h1');
 
-    //
-    container.classList.remove('containerPass');
-    timer.classList.remove('textPass');
-    container.classList.add('containerFail');
-    gameImage.classList.add('flash');
-    timer.classList.add('textFail');
-    if (container.classList.contains('containerFail')) {
-      //
-      gameImage.style.animation = 'none';
-      // eslint-disable-next-line no-unused-expressions
-      gameImage.offsetHeight;
-      gameImage.style.animation = '';
-
-      //
-      timer.style.animation = 'none';
-      // eslint-disable-next-line no-unused-expressions
-      timer.offsetHeight;
-      timer.style.animation = '';
+    if (condition === 'Pass') {
+      container.classList.remove(`containerFail`);
+      timer.classList.remove(`textFail`);
+    } else {
+      container.classList.remove(`containerPass`);
+      timer.classList.remove(`textPass`);
     }
-  }
-
-  function flashGreen() {
-    const container = document.querySelector('.container');
-    const gameImage = document.querySelector('.gameImage');
-    const timer = document.querySelector('h1');
-
-    container.classList.remove('containerFail');
-    timer.classList.remove('textFail');
-    container.classList.add('containerPass');
+    container.classList.add(`container${condition}`);
     gameImage.classList.add('flash');
-    timer.classList.add('textPass');
-    if (container.classList.contains('containerPass')) {
+    timer.classList.add(`text${condition}`);
+    if (container.classList.contains(`container${condition}`)) {
       gameImage.style.animation = 'none';
       // eslint-disable-next-line no-unused-expressions
       gameImage.offsetHeight;
@@ -121,8 +100,8 @@ export default function Game() {
         ) : (
           <img
             className="gameImage"
-            onClick={flashRed}
-            onContextMenu={flashGreen}
+            onClick={() => flash('Fail')}
+            onContextMenu={() => flash('Pass')}
             src={image}
             alt="find waldo"
           />
