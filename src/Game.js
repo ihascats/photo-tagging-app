@@ -57,6 +57,9 @@ export default function Game() {
     if (!gameStarted) return;
     const image = document.querySelector('.gameImage');
     const zoomStrength = 200;
+    window.onresize = () => {
+      image.style.width = `inherit`;
+    };
 
     if (event.key === '+') {
       if (image.width >= 5136) return;
@@ -64,6 +67,7 @@ export default function Game() {
     }
     if (event.key === '-') {
       if (image.width <= 1536) {
+        image.style.width = `${1536}px`;
         return;
       }
       image.style.width = `${image.width - zoomStrength}px`;

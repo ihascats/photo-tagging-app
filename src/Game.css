@@ -13,8 +13,8 @@
 .container {
   display: inline-block;
   overflow: overlay;
-  width: 1536px;
-  height: 864px;
+  width: 80vw;
+  height: calc(80vw * 0.5625);
 }
 
 .containerFail {
