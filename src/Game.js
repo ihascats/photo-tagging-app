@@ -61,15 +61,10 @@ export default function Game() {
       image.style.width = `inherit`;
     };
 
-    if (event.key === '+') {
-      if (image.width >= 5136) return;
+    if (event.key === '+' && image.width + zoomStrength <= 5136) {
       image.style.width = `${image.width + zoomStrength}px`;
     }
-    if (event.key === '-') {
-      if (image.width <= 1536) {
-        image.style.width = `${1536}px`;
-        return;
-      }
+    if (event.key === '-' && image.width - zoomStrength >= 1536) {
       image.style.width = `${image.width - zoomStrength}px`;
     }
   }
