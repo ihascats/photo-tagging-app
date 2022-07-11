@@ -1,0 +1,16 @@
+.gameImage {
+  width: inherit;
+}
+
+.flash {
+  animation: flash 2s;
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}

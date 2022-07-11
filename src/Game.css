@@ -12,7 +12,7 @@
 
 .container {
   display: inline-block;
-  overflow: hidden; /* clip the excess when child gets bigger than parent */
+  overflow: overlay;
   width: 1536px;
   height: 864px;
 }
@@ -24,18 +24,7 @@
 .containerPass {
   background-color: greenyellow;
 }
-.gameImage {
-  width: inherit;
-}
 
-@keyframes flash {
-  from {
-    opacity: 0.7;
-  }
-  to {
-    opacity: 1;
-  }
-}
 @keyframes flashRedText {
   from {
     color: red;
@@ -44,6 +33,7 @@
     color: wheat;
   }
 }
+
 @keyframes flashGreenText {
   from {
     color: greenyellow;
@@ -51,10 +41,6 @@
   to {
     color: wheat;
   }
-}
-
-.flash {
-  animation: flash 2s;
 }
 
 .textFail {
