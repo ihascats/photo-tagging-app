@@ -41,11 +41,15 @@ export default function GameImage({ image, secondsTimer, minutesTimer }) {
   function userClicked(event) {
     const coordinates = getCoordinates(event);
     // Control
-    const baseHeight = 864;
+    const baseHeight = 972;
     const baseWidth = 1536;
     // Should be pulled from firebase
-    const x = 168;
-    const y = 782;
+    const targets = {
+      Waldo: { x: 433, y: 333 },
+      Wilma: { x: 386, y: 709 },
+      Odlaw: { x: 920, y: 634 },
+      Wizard: { x: 943, y: 840 },
+    };
     //
 
     // User Input
@@ -53,18 +57,26 @@ export default function GameImage({ image, secondsTimer, minutesTimer }) {
     const userWidth = event.target.width;
     const selectedCoordX = (baseHeight / userHeight) * coordinates[0];
     const selectedCoordY = (baseWidth / userWidth) * coordinates[1];
+    console.log(userHeight, userWidth);
     //
 
     const tolerance = 24;
 
-    if (
-      selectedCoordX > x - tolerance &&
-      selectedCoordX < x + tolerance &&
-      selectedCoordY > y - tolerance &&
-      selectedCoordY < y + tolerance
-    ) {
+    const track = [];
+    Object.keys(targets).forEach((targetName) => {
+      const x = targets[`${targetName}`].x;
+      const y = targets[`${targetName}`].y;
+      if (
+        selectedCoordX > x - tolerance &&
+        selectedCoordX < x + tolerance &&
+        selectedCoordY > y - tolerance &&
+        selectedCoordY < y + tolerance
+      ) {
+        track.push(targetName);
+      }
+    });
+    if (track.length > 0) {
       flash('Pass');
-      endTimer();
     } else {
       flash('Fail');
     }
