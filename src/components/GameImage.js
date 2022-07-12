@@ -6,6 +6,7 @@ export default function GameImage({
   secondsTimer,
   minutesTimer,
   endGame,
+  targets,
 }) {
   const [found, setFound] = useState([]);
 
@@ -46,19 +47,14 @@ export default function GameImage({
     return [event.nativeEvent.offsetX, event.nativeEvent.offsetY];
   }
 
-  function userClicked(event) {
+  function foundSomeone(event) {
     const coordinates = getCoordinates(event);
     // Control
-    const baseHeight = 972;
+    const loadWidth = document.querySelector('img').width;
+    const loadHeight = document.querySelector('img').height;
+    const ratio = loadHeight / loadWidth;
     const baseWidth = 1536;
-    // Should be pulled from firebase
-    const targets = {
-      Waldo: { x: 433, y: 333 },
-      Wilma: { x: 386, y: 709 },
-      Odlaw: { x: 920, y: 634 },
-      Wizard: { x: 943, y: 840 },
-    };
-    //
+    const baseHeight = 1536 * ratio;
 
     // User Input
     const userHeight = event.target.height;
@@ -71,8 +67,8 @@ export default function GameImage({
 
     const track = [];
     Object.keys(targets).forEach((targetName) => {
-      const x = targets[`${targetName}`].x;
-      const y = targets[`${targetName}`].y;
+      const x = Number(targets[`${targetName}`].x);
+      const y = Number(targets[`${targetName}`].y);
       if (
         selectedCoordX > x - tolerance &&
         selectedCoordX < x + tolerance &&
@@ -104,7 +100,7 @@ export default function GameImage({
   return (
     <img
       className="gameImage"
-      onClick={userClicked}
+      onClick={foundSomeone}
       onContextMenu={() => flash('Pass')}
       src={image}
       alt="find waldo"

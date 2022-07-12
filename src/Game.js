@@ -1,9 +1,10 @@
+import { collection, onSnapshot, query } from 'firebase/firestore';
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import EndScreen from './components/EndScreen';
 import GameImage from './components/GameImage';
-import { storage } from './firebase.config';
+import { db, storage } from './firebase.config';
 import './Game.css';
 
 export default function Game() {
@@ -16,6 +17,7 @@ export default function Game() {
   const [secondsTimer, setSecondsTimer] = useState();
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
+  const [targets, setTargets] = useState();
 
   useEffect(() => {
     listAll(imagesRef).then((response) => {
@@ -27,6 +29,7 @@ export default function Game() {
         });
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function endGame() {
@@ -77,6 +80,23 @@ export default function Game() {
 
   window.onkeydown = zoom;
 
+  const currentGame =
+    window.location.href.split('/')[window.location.href.split('/').length - 1];
+
+  const positionsRef = collection(db, `${currentGame}`);
+
+  useEffect(() => {
+    const recentMessagesQuery = query(positionsRef);
+    onSnapshot(recentMessagesQuery, (snapshot) => {
+      const object = {};
+      snapshot.docs.forEach((doc) => {
+        return (object[doc.id] = { ...doc.data() });
+      });
+      setTargets(object);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="gameWrap">
       <h1>
@@ -91,6 +111,7 @@ export default function Game() {
             secondsTimer={secondsTimer}
             minutesTimer={minutesTimer}
             endGame={endGame}
+            targets={targets}
           />
         )}
       </div>
