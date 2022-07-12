@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import EndScreen from './components/EndScreen';
 import GameImage from './components/GameImage';
+import GithubLink from './components/GithubLink';
 import { db, storage } from './firebase.config';
 import './Game.css';
 
@@ -118,6 +119,7 @@ export default function Game() {
       {gameEnded ? (
         <EndScreen time={`${getTime(minutes)}:${getTime(seconds)}`} />
       ) : null}
+      <GithubLink />
     </div>
   );
 }

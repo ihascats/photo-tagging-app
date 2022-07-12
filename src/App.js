@@ -2,6 +2,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import './App.css';
 import GameSelect from './components/GameSelect';
+import GithubLink from './components/GithubLink';
 import { storage } from './firebase.config';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         });
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -32,6 +34,7 @@ function App() {
           );
         })}
       </div>
+      <GithubLink />
     </div>
   );
 }
