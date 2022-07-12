@@ -1,0 +1,11 @@
+.home {
+  position: fixed;
+}
+
+.home > svg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 16px;
+  z-index: 10;
+}

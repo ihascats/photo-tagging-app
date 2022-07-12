@@ -15,6 +15,9 @@ export default function EndScreen({ time }) {
   const [submitStatus, setSubmitStatus] = useState(false);
   const [leaderboardInformation, setLeaderboardInformation] = useState([]);
 
+  const svg = document.querySelector('.homeSvg>path');
+  svg.style.fill = 'rgb(47 255 135 / 70%)';
+
   useEffect(() => {
     const recentMessagesQuery = query(
       leaderboardRef,
