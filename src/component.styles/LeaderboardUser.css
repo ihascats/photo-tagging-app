@@ -1,0 +1,18 @@
+.leaderboardInfo {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4ch 24ch max-content;
+  column-gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboardInfo > div > p {
+  letter-spacing: 2px;
+  font-size: 13px;
+  color: #f3ffee;
+}
+
+.leaderboardInfo > div > h3 {
+  color: rgb(122, 182, 33);
+}

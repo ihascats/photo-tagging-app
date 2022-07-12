@@ -1,12 +1,14 @@
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
+import { sendTime } from '../firebase.config';
 
-export default function SubmitInfo({ time, setSubmitStatus }) {
+export default function SubmitInfo({ time, setSubmitStatus, currentGame }) {
   function submitTime() {
     const timer = time.split(':');
     const seconds = Number(timer[0]) * 60 + Number(timer[1]);
     const username = document.querySelector('.username').value;
     // send username and seconds to firebase
+    sendTime({ username, time: seconds }, currentGame);
     setSubmitStatus(true);
   }
 
