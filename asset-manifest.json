@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/photo-tagging-app/static/css/main.a93e1643.css",
+    "main.js": "/photo-tagging-app/static/js/main.adcd6338.js",
+    "index.html": "/photo-tagging-app/index.html",
+    "main.a93e1643.css.map": "/photo-tagging-app/static/css/main.a93e1643.css.map",
+    "main.adcd6338.js.map": "/photo-tagging-app/static/js/main.adcd6338.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a93e1643.css",
+    "static/js/main.adcd6338.js"
+  ]
+}
