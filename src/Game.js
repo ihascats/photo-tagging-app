@@ -6,12 +6,15 @@ import EndScreen from './components/EndScreen';
 import GameImage from './components/GameImage';
 import GithubLink from './components/GithubLink';
 import HomeLink from './components/HomeLink';
+import LookingFor from './components/LookingFor';
 import { db, storage } from './firebase.config';
 import './Game.css';
 
 export default function Game() {
   const [image, setImage] = useState();
+  const [characters, setCharacters] = useState();
   const imagesRef = ref(storage, '/');
+  const charactersRef = ref(storage, '/characters');
   const { id } = useParams();
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -30,6 +33,20 @@ export default function Game() {
           }
         });
       });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const chars = [];
+    listAll(charactersRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          chars.push(url);
+        });
+      });
+      console.log(chars);
+      setCharacters(chars);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -122,6 +139,7 @@ export default function Game() {
       ) : null}
       <HomeLink />
       <GithubLink />
+      {characters ? <LookingFor characters={characters} /> : null}
     </div>
   );
 }

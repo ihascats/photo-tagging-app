@@ -84,6 +84,9 @@ export default function GameImage({
     });
     if (track.length > 0) {
       flash('Pass');
+      document.querySelector(
+        `.${track[0][0].toLowerCase() + track[0].slice(1, track[0].length)}`,
+      ).style.opacity = '0.5';
     } else {
       flash('Fail');
     }

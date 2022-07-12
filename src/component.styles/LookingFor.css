@@ -1,0 +1,14 @@
+.lookingFor {
+  position: fixed;
+  height: 64px;
+  width: 64px;
+  /* overflow: hidden; */
+  display: grid;
+  grid-template-rows: max-content max-content max-content max-content;
+  left: 0;
+  row-gap: 16px;
+}
+
+.lookingFor > img {
+  height: 64px;
+}
