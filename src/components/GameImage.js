@@ -1,6 +1,14 @@
+import { useEffect, useState } from 'react';
 import '../component.styles/GameImage.css';
 
-export default function GameImage({ image, secondsTimer, minutesTimer }) {
+export default function GameImage({
+  image,
+  secondsTimer,
+  minutesTimer,
+  endGame,
+}) {
+  const [found, setFound] = useState([]);
+
   // run this when user finds all characters
   function endTimer() {
     clearInterval(secondsTimer);
@@ -57,7 +65,6 @@ export default function GameImage({ image, secondsTimer, minutesTimer }) {
     const userWidth = event.target.width;
     const selectedCoordX = (baseHeight / userHeight) * coordinates[0];
     const selectedCoordY = (baseWidth / userWidth) * coordinates[1];
-    console.log(userHeight, userWidth);
     //
 
     const tolerance = 24;
@@ -70,9 +77,13 @@ export default function GameImage({ image, secondsTimer, minutesTimer }) {
         selectedCoordX > x - tolerance &&
         selectedCoordX < x + tolerance &&
         selectedCoordY > y - tolerance &&
-        selectedCoordY < y + tolerance
+        selectedCoordY < y + tolerance &&
+        !found.includes(targetName)
       ) {
         track.push(targetName);
+        const tempArray = [...found];
+        tempArray.push(targetName);
+        setFound(tempArray);
       }
     });
     if (track.length > 0) {
@@ -81,6 +92,14 @@ export default function GameImage({ image, secondsTimer, minutesTimer }) {
       flash('Fail');
     }
   }
+
+  useEffect(() => {
+    if (4 === found.length) {
+      endTimer();
+      // Display end screen, ask user name and show him the top 10 players
+      endGame();
+    }
+  });
 
   return (
     <img

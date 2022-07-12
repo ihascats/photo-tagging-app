@@ -1,0 +1,60 @@
+.endScreen {
+  position: absolute;
+  background-color: rgb(55 149 71 / 30%);
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.endContainer {
+  background: #1c201f;
+  height: 100vh;
+  width: 36vw;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: repeat(auto-fit, minmax(min-content, auto));
+  padding: 16px;
+  align-content: center;
+  row-gap: 24px;
+  min-width: fit-content;
+}
+
+.endContainer > p {
+  font-size: 24px;
+  color: rgb(122, 182, 33);
+}
+
+.endContainer > input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgb(122, 182, 33);
+  border-radius: 4px;
+  font-size: 20px;
+  outline: none;
+  height: min-content;
+  color: wheat;
+  padding: 4px 8px;
+  transition: border-color 0.5s ease-in;
+  text-align: center;
+}
+
+.endContainer > input:focus {
+  border-color: rgb(47, 241, 255);
+}
+
+.endContainer > button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  border: 2px solid rgb(122, 182, 33);
+  border-radius: 4px;
+  transition: border-color 0.2s ease-in;
+}
+
+.endContainer > button:hover {
+  border-color: rgb(47, 241, 255);
+}

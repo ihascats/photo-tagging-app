@@ -1,6 +1,7 @@
 import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import EndScreen from './components/EndScreen';
 import GameImage from './components/GameImage';
 import { storage } from './firebase.config';
 import './Game.css';
@@ -14,6 +15,7 @@ export default function Game() {
   const [minutesTimer, setMinutesTimer] = useState();
   const [secondsTimer, setSecondsTimer] = useState();
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
 
   useEffect(() => {
     listAll(imagesRef).then((response) => {
@@ -26,6 +28,10 @@ export default function Game() {
       });
     });
   }, []);
+
+  function endGame() {
+    setGameEnded(true);
+  }
 
   function getTime(time) {
     if (time.toString().length === 1) {
@@ -84,9 +90,13 @@ export default function Game() {
             image={image}
             secondsTimer={secondsTimer}
             minutesTimer={minutesTimer}
+            endGame={endGame}
           />
         )}
       </div>
+      {gameEnded ? (
+        <EndScreen time={`${getTime(minutes)}:${getTime(seconds)}`} />
+      ) : null}
     </div>
   );
 }
