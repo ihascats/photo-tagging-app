@@ -9,7 +9,6 @@ import {
   orderBy,
   query,
 } from 'firebase/firestore';
-import LeaderboardUser from './LeaderboardUser';
 import Leaderboard from './Leaderboard';
 
 export default function EndScreen({ time }) {
