@@ -10,6 +10,7 @@ import {
   query,
 } from 'firebase/firestore';
 import LeaderboardUser from './LeaderboardUser';
+import Leaderboard from './Leaderboard';
 
 export default function EndScreen({ time }) {
   const [submitStatus, setSubmitStatus] = useState(false);
@@ -39,23 +40,12 @@ export default function EndScreen({ time }) {
 
   const leaderboardRef = collection(db, `${currentGame}Leaderboard`);
 
-  const leaderboard = (
-    <div>
-      <h2 className="leaderboardText">LEADERBOARD</h2>
-      <div>
-        {leaderboardInformation.map((info, index) => {
-          return <LeaderboardUser key={info.id} info={info} index={index} />;
-        })}
-      </div>
-    </div>
-  );
-
   return (
     <div className="endScreen">
       <div className="endContainer">
         {/* Everything goes here */}
         {submitStatus ? (
-          leaderboard
+          <Leaderboard leaderboardInformation={leaderboardInformation} />
         ) : (
           <SubmitInfo
             time={time}

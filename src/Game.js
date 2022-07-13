@@ -45,7 +45,6 @@ export default function Game() {
           chars.push(url);
         });
       });
-      console.log(chars);
       setCharacters(chars);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
