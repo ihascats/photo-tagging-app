@@ -14,7 +14,6 @@
   width: 36vw;
   display: grid;
   justify-items: center;
-  grid-template-rows: repeat(auto-fit, minmax(min-content, auto));
   padding: 16px;
   align-content: center;
   row-gap: 24px;
@@ -57,4 +56,14 @@
 
 .endContainer > div > button:hover {
   border-color: rgb(47, 241, 255);
+}
+
+.leaderboardText {
+  color: rgb(122, 182, 33);
+  letter-spacing: 2px;
+}
+
+.endContainer > div > div {
+  display: grid;
+  row-gap: 16px;
 }

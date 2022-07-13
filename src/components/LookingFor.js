@@ -1,7 +1,6 @@
 import '../component.styles/LookingFor.css';
 
 export default function LookingFor(characters) {
-  console.log(characters);
   return (
     <div className="lookingFor">
       {characters['characters'].map((character) => {

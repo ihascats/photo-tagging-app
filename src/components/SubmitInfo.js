@@ -1,32 +1,27 @@
-import Icon from '@mdi/react';
-import { mdiArrowRight } from '@mdi/js';
 import { sendTime } from '../firebase.config';
+import SubmitButton from './SubmitButton';
+import '../component.styles/SubmitInfo.css';
 
 export default function SubmitInfo({ time, setSubmitStatus, currentGame }) {
   function submitTime() {
+    const usernameInput = document.querySelector('.username');
+    const username = usernameInput.value;
+    if (username.length < 3) {
+      usernameInput.style.borderColor = 'red';
+      return;
+    }
     const timer = time.split(':');
     const seconds = Number(timer[0]) * 60 + Number(timer[1]);
-    const username = document.querySelector('.username').value;
     // send username and seconds to firebase
     sendTime({ username, time: seconds }, currentGame);
     setSubmitStatus(true);
   }
 
   return (
-    <div>
+    <div className="runInfo">
       <p>{time}</p>
       <input className="username" type="text"></input>
-      <button onClick={submitTime}>
-        <Icon
-          path={mdiArrowRight}
-          title="User Profile"
-          size={2}
-          horizontal
-          vertical
-          rotate={180}
-          color="#f3ffee"
-        />
-      </button>
+      <SubmitButton executeFunction={submitTime} />
     </div>
   );
 }

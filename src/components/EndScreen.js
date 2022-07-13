@@ -41,9 +41,12 @@ export default function EndScreen({ time }) {
 
   const leaderboard = (
     <div>
-      {leaderboardInformation.map((info, index) => {
-        return <LeaderboardUser key={info.id} info={info} index={index} />;
-      })}
+      <h2 className="leaderboardText">LEADERBOARD</h2>
+      <div>
+        {leaderboardInformation.map((info, index) => {
+          return <LeaderboardUser key={info.id} info={info} index={index} />;
+        })}
+      </div>
     </div>
   );
 

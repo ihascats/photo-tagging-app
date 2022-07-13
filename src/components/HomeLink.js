@@ -1,7 +1,7 @@
 import '../component.styles/HomeLink.css';
 import Icon from '@mdi/react';
 
-import { mdiHome } from '@mdi/js';
+import { mdiArrowLeftThick } from '@mdi/js';
 import { Link } from 'react-router-dom';
 
 export default function HomeLink() {
@@ -9,7 +9,7 @@ export default function HomeLink() {
     <Link className="home" draggable={false} to={process.env.PUBLIC_URL + `/`}>
       <Icon
         className="homeSvg"
-        path={mdiHome}
+        path={mdiArrowLeftThick}
         title="User Profile"
         size={2}
         horizontal
