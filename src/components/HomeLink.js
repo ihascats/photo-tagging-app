@@ -10,7 +10,7 @@ export default function HomeLink() {
       <Icon
         className="homeSvg"
         path={mdiHome}
-        title="User Profile"
+        title="Home"
         size={2}
         horizontal
         vertical

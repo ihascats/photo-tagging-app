@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore';
 import Leaderboard from './Leaderboard';
 
-export default function EndScreen({ time }) {
+export default function EndScreen({ time, reset }) {
   const [submitStatus, setSubmitStatus] = useState(false);
   const [leaderboardInformation, setLeaderboardInformation] = useState([]);
 
@@ -44,7 +44,10 @@ export default function EndScreen({ time }) {
       <div className="endContainer">
         {/* Everything goes here */}
         {submitStatus ? (
-          <Leaderboard leaderboardInformation={leaderboardInformation} />
+          <Leaderboard
+            leaderboardInformation={leaderboardInformation}
+            reset={reset}
+          />
         ) : (
           <SubmitInfo
             time={time}

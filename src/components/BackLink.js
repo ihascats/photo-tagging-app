@@ -10,7 +10,7 @@ export default function BackLink() {
       <Icon
         className="backSvg"
         path={mdiArrowLeftThick}
-        title="User Profile"
+        title="Back"
         size={2}
         horizontal
         vertical

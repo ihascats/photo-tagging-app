@@ -11,11 +11,11 @@ import { db, storage } from './firebase.config';
 import './Game.css';
 
 export default function Game() {
-  const [image, setImage] = useState();
-  const [characters, setCharacters] = useState();
   const imagesRef = ref(storage, '/');
   const charactersRef = ref(storage, '/characters');
   const { id } = useParams();
+  const [image, setImage] = useState();
+  const [characters, setCharacters] = useState();
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [minutesTimer, setMinutesTimer] = useState();
@@ -23,6 +23,28 @@ export default function Game() {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [targets, setTargets] = useState();
+
+  function resetStates() {
+    setCharacters();
+    setMinutes(0);
+    setSeconds(0);
+    setGameStarted(false);
+    setGameEnded(false);
+    const container = document.querySelector('.container');
+    container.classList.remove(`containerFail`);
+    container.classList.remove(`containerPass`);
+    const svg = document.querySelector('.backSvg>path');
+    svg.style.fill = 'black';
+    const chars = [];
+    listAll(charactersRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          chars.push(url);
+        });
+      });
+      setCharacters(chars);
+    });
+  }
 
   useEffect(() => {
     listAll(imagesRef).then((response) => {
@@ -134,11 +156,14 @@ export default function Game() {
         )}
       </div>
       {gameEnded ? (
-        <EndScreen time={`${getTime(minutes)}:${getTime(seconds)}`} />
+        <EndScreen
+          time={`${getTime(minutes)}:${getTime(seconds)}`}
+          reset={resetStates}
+        />
       ) : null}
       <BackLink />
       <GithubLink />
-      {characters ? <LookingFor characters={characters} /> : null}
+      {gameStarted ? <LookingFor characters={characters} /> : null}
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import HomeLink from './HomeLink';
 import LeaderboardUser from './LeaderboardUser';
+import Restart from './Restart';
 
-export default function Leaderboard({ leaderboardInformation }) {
+export default function Leaderboard({ leaderboardInformation, reset }) {
   return (
     <div>
       <h2 className="leaderboardText">LEADERBOARD</h2>
@@ -10,7 +11,10 @@ export default function Leaderboard({ leaderboardInformation }) {
           return <LeaderboardUser key={info.id} info={info} index={index} />;
         })}
       </div>
-      <HomeLink />
+      <div>
+        <Restart reset={reset} />
+        <HomeLink />
+      </div>
     </div>
   );
 }
