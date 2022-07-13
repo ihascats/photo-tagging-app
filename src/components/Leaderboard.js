@@ -1,3 +1,4 @@
+import HomeLink from './HomeLink';
 import LeaderboardUser from './LeaderboardUser';
 
 export default function Leaderboard({ leaderboardInformation }) {
@@ -9,6 +10,7 @@ export default function Leaderboard({ leaderboardInformation }) {
           return <LeaderboardUser key={info.id} info={info} index={index} />;
         })}
       </div>
+      <HomeLink />
     </div>
   );
 }
