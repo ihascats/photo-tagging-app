@@ -1,4 +1,3 @@
-import '../component.styles/SubmitButton.css';
 import Icon from '@mdi/react';
 import { mdiArrowRight } from '@mdi/js';
 

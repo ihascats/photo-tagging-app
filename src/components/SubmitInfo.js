@@ -1,6 +1,5 @@
 import { sendTime } from '../firebase.config';
 import SubmitButton from './SubmitButton';
-import '../component.styles/SubmitInfo.css';
 
 export default function SubmitInfo({ time, setSubmitStatus, currentGame }) {
   function submitTime() {
